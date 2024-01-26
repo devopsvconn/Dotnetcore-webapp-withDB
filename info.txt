@@ -1,0 +1,1 @@
+This project is based on Dotnetcore app with database for reference and studying the Azure devops
