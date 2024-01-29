@@ -185,7 +185,7 @@ stages:
   dependsOn: Build_Stage
   variables:
     azureSubscription: 'Azure subscription 1' # couldn't be referenced
-    ResourceGroupName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)-RG'
+    ResourceGroupName: 'testing'
     Database.Admin: 'houssem'
     Database.Password: '@Aa123456' # to be secured in Key Vault
     Database.Name: 'EmployeesDB'
@@ -194,7 +194,7 @@ stages:
     SqlServerName: '$(Prefix)-sql-$(Release.EnvironmentName)-$(UniqueId)'
     Prefix: 'tunis'
     Release.EnvironmentName: 'dev'
-    UniqueId: '1280' #'$(Build.BuildId)'
+    UniqueId: '$(Build.BuildId)'
     hostingPlanName: '$(Prefix)-service-plan'
 
   jobs:
