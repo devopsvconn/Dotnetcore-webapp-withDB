@@ -33,9 +33,8 @@ stages:
   - job: WebApp
     displayName: Build Web App
     pool:
-      name: New Pool
-      demands:
-      - Agent.OS -equals 'Windows_NT'
+      name: Hosted Windows 2019 with VS2019 
+      vmImage: 'windows-2019'
     variables:
       BuildConfiguration: release
     steps:
