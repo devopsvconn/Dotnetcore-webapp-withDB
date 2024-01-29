@@ -184,7 +184,7 @@ stages:
   displayName: Create & Deploy to Dev
   dependsOn: Build_Stage
   variables:
-    azureSubscription: 'Azure subscription 1' # couldn't be referenced
+    azureSubscription: 'Azure subscription 1 (722c30a0-c955-4f26-aa70-d82ada45a8d4)' # couldn't be referenced
     ResourceGroupName: 'testing'
     Database.Admin: 'houssem'
     Database.Password: '@Aa123456' # to be secured in Key Vault
