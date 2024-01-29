@@ -35,7 +35,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'windows-machine'
+      - Agent.OS -equals 'Windows_NT'
     variables:
       BuildConfiguration: release
     steps:
@@ -130,7 +130,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'windows-machine'
+      - Agent.OS -equals 'Windows_NT'
     steps:
 
     - task: MSBuild@1
@@ -175,7 +175,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'linux-machine-ubuntu'
+      - Agent.OS -equals 'Linux'
     steps:
     
     - task: PublishBuildArtifacts@1
@@ -207,7 +207,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'windows-machine'
+      - Agent.OS -equals 'Windows_NT'
     steps:
 
     - checkout: none
@@ -301,7 +301,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'windows-machine'
+      - Agent.OS -equals 'Windows_NT'
     steps:
 
     - checkout: none
@@ -354,7 +354,7 @@ stages:
     pool:
       name: New Pool
       demands:
-      - Agent.Name -equals 'windows-machine'
+      - Agent.OS -equals 'Windows_NT'
     steps:
 
     - checkout: none
