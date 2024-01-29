@@ -147,8 +147,9 @@ stages:
   - job: Selenium
     displayName: Build UI Tests
     pool:
-      vmImage: 'windows-2019'
-      demands: msbuild
+      name: New Pool
+      demands:
+      - Agent.OS -equals 'Windows_NT'
 
     steps:
     - task: NuGetToolInstaller@0
