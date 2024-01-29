@@ -33,8 +33,9 @@ stages:
   - job: WebApp
     displayName: Build Web App
     pool:
-      name: Hosted Windows 2019 with VS2019 
-      vmImage: 'windows-2019'
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'windows-machine'
     variables:
       BuildConfiguration: release
     steps:
@@ -127,8 +128,9 @@ stages:
   - job: Database
     displayName: Build Database
     pool:
-      vmImage: 'windows-2019'
-      demands: msbuild
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'windows-machine'
     steps:
 
     - task: MSBuild@1
@@ -171,7 +173,9 @@ stages:
   - job: Infrastructure
     displayName: Publish Infra files
     pool:
-      vmImage: 'ubuntu-latest'
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'linux-machine-ubuntu'
     steps:
     
     - task: PublishBuildArtifacts@1
@@ -201,7 +205,9 @@ stages:
   - job: Create_DEV
     displayName: Create DEV
     pool:
-      vmImage: 'windows-2019'
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'windows-machine'
     steps:
 
     - checkout: none
@@ -293,7 +299,9 @@ stages:
     displayName: Deploy Apps to DEV
     dependsOn: Create_DEV
     pool:
-      vmImage: 'windows-2019'
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'windows-machine'
     steps:
 
     - checkout: none
@@ -344,7 +352,9 @@ stages:
     displayName: Run Selenium tests in DEV
     dependsOn: Deploy_DEV
     pool:
-      vmImage: 'windows-2019'
+      name: New Pool
+      demands:
+      - Agent.Name -equals 'windows-machine'
     steps:
 
     - checkout: none
