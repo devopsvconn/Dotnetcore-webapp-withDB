@@ -230,6 +230,11 @@ stages:
       inputs:
         deploymentScope: 'Resource Group'
         azureResourceManagerConnection: 'azure-service-connection-2'
+        subscriptionId: '722c30a0-c955-4f26-aa70-d82ada45a8d4'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'testing'
+        location: 'Southeast Asia'
+        templateLocation: 'Linked artifact'
         overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
         deploymentMode: 'Validation'
     - task: AzSKARMTemplateChecker@4
