@@ -235,8 +235,8 @@ stages:
         resourceGroupName: 'testing'
         location: 'Southeast Asia'
         templateLocation: 'Linked artifact'
-        csmFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
-        csmParametersFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'        
+        csmFile: '$(System.DefaultWorkingDirectory)/**/WebSiteSQLDatabase.json'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/**/WebSiteSQLDatabase.parameters.json'
         overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
         deploymentMode: 'Complete'
     - task: AzSKARMTemplateChecker@4
