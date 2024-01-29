@@ -83,10 +83,10 @@ stages:
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
         SonarCloud: 'SonarCloud'
-        organization: 'project01-dotnetcorewithdatabase'
+        organization: 'sonartesting-exampledemo'
         scannerMode: 'MSBuild'
-        projectKey: 'muhammadfarjad20232_AzureDevOps-Proj-0001'
-        projectName: 'AzureDevOps-Proj-0001'
+        projectKey: 'muhammadfarjad20067_Dotnet-coreporject-003'
+        projectName: 'Dotnet-coreporject-003'
 
     - task: DotNetCoreCLI@2
       displayName: Build WebApp
