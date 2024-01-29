@@ -45,12 +45,7 @@ stages:
       inputs:
         command: restore
         projects: '**/WebApp.csproj'
-    - task: WhiteSource@21
-      displayName: Scan Nuget Packages
-      inputs:
-        cwd: '$(System.DefaultWorkingDirectory)'
-        projectName: 'AzureDevOps-Proj-0001'
-      enabled: ${{ parameters.runCompletePipeline }}
+        
     - task: PowerShell@2
       displayName: Prepare for Sonar Cloud
       enabled: ${{ parameters.runCompletePipeline }}
