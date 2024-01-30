@@ -323,7 +323,7 @@ stages:
           
           # Download and extract ChromeDriver
           Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$version/chromedriver_win32.zip" -OutFile "chromedriver.zip"
-          Expand-Archive -Path "chromedriver.zip" -DestinationPath "$(System.DefaultWorkingDirectory)/ui-tests"
+          Expand-Archive -Path "chromedriver.zip" -DestinationPath "$(System.DefaultWorkingDirectory)/ui-tests" -Force
           
           # Clean up
           Remove-Item "chromedriver.zip"
