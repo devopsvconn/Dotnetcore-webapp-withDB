@@ -239,53 +239,7 @@ stages:
         csmParametersFile: '$(System.DefaultWorkingDirectory)/**/WebSiteSQLDatabase.parameters.json'
         overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
         deploymentMode: 'Complete'
-    - task: AzSKARMTemplateChecker@4
-      displayName: Scan ARM templates using AzSK
-      enabled: ${{ parameters.runCompletePipeline }}
-      continueOnError: true
-      inputs:
-        ARMTemplateFilePath: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
-        ARMTemplateParameterFilePath: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'
-# scan ARM template using TTK
-    - task: RunARMTTKTests@1
-      displayName: Scan ARM templates using TTK
-      inputs:
-        templatelocation: '$(System.DefaultWorkingDirectory)/arm/'
-        resultLocation: '$(System.DefaultWorkingDirectory)/arm/results'
-        allTemplatesMain: false
-        cliOutputResults: true
-        ignoreExitCode: true
-        # includeTests: 'VM Images Should Use Latest Version,Resources Should Have Location'
-        # skipTests: 'VM Images Should Use Latest Version,Resources Should Have Location'
-    - task: PublishTestResults@2
-      displayName: Publish TTK Test Results
-      inputs:
-        testResultsFormat: 'NUnit'
-        testResultsFiles: '$(System.DefaultWorkingDirectory)\arm\results\*-armttk.xml'
-      condition: always()
-    - task: AzureCLI@2
-      displayName: Preview Template Changes (What-If)
-      inputs:
-        workingDirectory: $(System.DefaultWorkingDirectory)/arm/
-        azureSubscription: 'azure-service-connection-2'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: 'az deployment group what-if --resource-group $(ResourceGroupName) --name rollout01 --template-file  WebSiteSQLDatabase.json --parameters WebSiteSQLDatabase.parameters.json'
-        arguments: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
-    - task: AzureResourceManagerTemplateDeployment@3
-      displayName: Deploy ARM templates
-      inputs:
-        deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'azure-service-connection-2'
-        subscriptionId: '4b72ed90-7ca3-4e76-8d0f-31a2c0bee7a3'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: '$(ResourceGroupName)'
-        location: 'Southeast Asia'
-        templateLocation: 'Linked artifact'
-        csmFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
-        csmParametersFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'
-        overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
-        deploymentMode: 'Complete'
+
     - task: AzSKSVTs@4
       displayName: Scan Azure Resources
       enabled: ${{ parameters.runCompletePipeline }}
@@ -294,8 +248,9 @@ stages:
         ConnectedServiceNameARM: 'azure-service-connection-2'
         GenerateMethodParameterSetSelection: 'ResourceGroupName'
         ResourceGroupName: '$(ResourceGroupName)'
-        SubscriptionId: '4b72ed90-7ca3-4e76-8d0f-31a2c0bee7a3'
+        SubscriptionId: '722c30a0-c955-4f26-aa70-d82ada45a8d4'
         EnableGSSscan: true
+        
   - job: Deploy_DEV
     displayName: Deploy Apps to DEV
     dependsOn: Create_DEV
