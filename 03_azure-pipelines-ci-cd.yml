@@ -9,7 +9,7 @@ pr:
 trigger:
  branches:
    include:
-     - main
+     - master
  paths:
    exclude:
      - docs/*
