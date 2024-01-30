@@ -327,6 +327,9 @@ stages:
           
           # Clean up
           Remove-Item "chromedriver.zip"
+    - script: |
+        choco install googlechrome --version=96.0.4664.45 --allow-downgrade --yes --force
+      displayName: 'Install specific version of Chrome'
 
     - task: VSTest@2
       displayName: Run Selenium UI Tests
